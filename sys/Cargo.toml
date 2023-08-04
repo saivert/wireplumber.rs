@@ -58,8 +58,8 @@ libc = "0.2"
 glib-sys = { version = "0.17" }
 gobject-sys = { version = "0.17" }
 gio-sys = { version = "0.17" }
-pipewire = { version = "0", package = "pipewire-sys", git = "https://gitlab.freedesktop.org/saivert/pipewire-rs", branch = "format_parsing_test" }
-libspa = { version = "0", package = "libspa-sys", git = "https://gitlab.freedesktop.org/saivert/pipewire-rs", branch = "format_parsing_test" }
+pipewire = { version = "0", package = "pipewire-sys", git = "https://gitlab.freedesktop.org/saivert/pipewire-rs", branch = "misc_fixes" }
+libspa = { version = "0", package = "libspa-sys", git = "https://gitlab.freedesktop.org/saivert/pipewire-rs", branch = "misc_fixes" }
 
 [build-dependencies]
 system-deps = "6"
