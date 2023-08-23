@@ -46,9 +46,6 @@ bitflags = "2"
 futures-channel = { version = "0.3", optional = true }
 glib-signal = { version = "0.3", optional = true }
 
-[patch.crates-io]
-glib-signal = { git = "https://github.com/saivert/glib-signal.rs.git" }
-
 [dev-dependencies]
 futures-util = { version = "0.3" }
 
