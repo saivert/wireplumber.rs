@@ -8,7 +8,7 @@ and/or use gtk-doc annotations.  -->
   <include name="Gio" version="2.0"/>
   <package name="wireplumber-0.4"/>
   <c:include name="wp/wp.h"/>
-  <namespace name="Wp" version="0.4" shared-library="wireplumber-0.4.so.0" c:identifier-prefixes="Wp" c:symbol-prefixes="wp">
+  <namespace name="Wp" version="0.4" shared-library="libwireplumber-0.4.so.0" c:identifier-prefixes="Wp" c:symbol-prefixes="wp">
     <alias name="ObjectFeatures" c:type="WpObjectFeatures">
       <source-position filename="lib/wp/object.h" line="31"/>
       <type name="guint" c:type="guint"/>
@@ -94,7 +94,7 @@ An object id of -1 can be used to set the default object permissions for this cl
           <parameter name="permissions" transfer-ownership="none">
             <doc xml:space="preserve" filename="docs/wp-gtkdoc.h" line="66">an array of permissions per object id</doc>
             <array length="0" zero-terminated="0" c:type="const pw_permission*">
-              <type c:type="pw_permission" name="guint64"/>
+              <type c:type="pw_permission" name="gpointer"/>
             </array>
           </parameter>
         </parameters>

@@ -52,7 +52,8 @@ impl Node {
     }
 
     #[doc(alias = "wp_node_lookup_port_full")]
-    pub fn lookup_port_full(&self, interest: ObjectInterest) -> Option<Port> {
+    #[doc(alias = "lookup_port_full")]
+    pub fn lookup_port(&self, interest: ObjectInterest) -> Option<Port> {
         unsafe {
             from_glib_full(ffi::wp_node_lookup_port_full(self.to_glib_none().0, interest.into_glib_ptr()))
         }
@@ -81,12 +82,12 @@ impl Node {
 
     #[doc(alias = "max-input-ports")]
     pub fn max_input_ports(&self) -> u32 {
-        glib::ObjectExt::property(self, "max-input-ports")
+        ObjectExt::property(self, "max-input-ports")
     }
 
     #[doc(alias = "max-output-ports")]
     pub fn max_output_ports(&self) -> u32 {
-        glib::ObjectExt::property(self, "max-output-ports")
+        ObjectExt::property(self, "max-output-ports")
     }
 
     #[doc(alias = "ports-changed")]

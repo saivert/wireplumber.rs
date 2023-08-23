@@ -22,10 +22,10 @@
 //! - [Metadata](https://pipewire.pages.freedesktop.org/wireplumber/c_api/metadata_api.html)
 //! - [Endpoint](https://pipewire.pages.freedesktop.org/wireplumber/c_api/endpoint_api.html)
 
-#[cfg(any(feature = "v0_4_11", feature = "dox"))]
+#[cfg(feature = "v0_4_11")]
 pub use crate::auto::LinkState;
-#[cfg(any(feature = "v0_4_2", feature = "dox"))]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "v0_4_2")))]
+#[cfg(feature = "v0_4_2")]
+#[cfg_attr(docsrs, doc(cfg(feature = "v0_4_2")))]
 pub use crate::auto::PropertiesItem;
 pub use {
 	self::{
@@ -40,6 +40,7 @@ pub use {
 	},
 };
 
+mod client;
 mod keys;
 mod link;
 mod node;
@@ -48,24 +49,25 @@ mod properties;
 mod proxy;
 
 #[cfg(feature = "libspa")]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "libspa")))]
+#[cfg_attr(docsrs, doc(cfg(feature = "libspa")))]
 impl From<Direction> for libspa::Direction {
 	fn from(dir: Direction) -> Self {
 		match dir {
 			Direction::Input => Self::Input,
 			Direction::Output => Self::Output,
-			Direction::__Unknown(v) => panic!("unsupported WpDirection value: {v}"),
+			Direction::__Unknown(v) => Self::from_raw(v as libspa_sys::spa_direction),
 		}
 	}
 }
 
 #[cfg(feature = "libspa")]
-#[cfg_attr(feature = "dox", doc(cfg(feature = "libspa")))]
+#[cfg_attr(docsrs, doc(cfg(feature = "libspa")))]
 impl From<libspa::Direction> for Direction {
 	fn from(dir: libspa::Direction) -> Self {
 		match dir {
 			libspa::Direction::Input => Self::Input,
 			libspa::Direction::Output => Self::Output,
+			dir => Self::__Unknown(dir.as_raw() as crate::ffi::WpDirection),
 		}
 	}
 }

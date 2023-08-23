@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
-# note: a pw_permission is actually 2x uint32
 exec xmlstarlet ed \
-	-i '///_:type[not(@name) and @c:type="pw_permission"]' -t attr -n name -v guint64 \
+	-i '///_:type[not(@name) and @c:type="pw_permission"]' -t attr -n name -v 'gpointer' \
 	-u '///_:constant[@c:type="WP_LOG_LEVEL_TRACE"]/@value' -v $((1<<8)) \
 	-u '///_:constant[@c:type="WP_PIPEWIRE_OBJECT_FEATURES_ALL"]/@value' -v $((992|17)) \
 	-i '///_:record[@c:type="WpIteratorMethods"]' -t attr -n glib:get-type -v wp_iterator_methods_get_type \
@@ -38,5 +37,4 @@ exec xmlstarlet ed \
 	-i '///_:class[@c:type="WpLink"]/glib:signal[@name="state-changed"]' -t attr -n version -v 0.4.11 \
 	-i '///_:function[@name="get_library_version"]' -t attr -n version -v 0.4.12 \
 	-i '///_:function[@name="get_library_api_version"]' -t attr -n version -v 0.4.12 \
-	-u '//_:namespace[@name="Wp"]/@shared-library' -v wireplumber-0.4.so.0 \
-	-i '/_:repository/_:package[not(@name)]' -t attr -n name -v wireplumber-0.4
+	-u '//_:namespace[@name="Wp"]/@shared-library' -v libwireplumber-0.4.so.0
